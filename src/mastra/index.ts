@@ -4,7 +4,7 @@ import { LibSQLStore } from '@mastra/libsql';
 import { semsoAgent } from './agents/semso-agent';
 import { semsoWorkflow } from './workflows/semso-workflow';
 import { weatherWorkflow } from './workflows/weather-workflow';
-import { weatherAgent } from './agents/weather-agent';
+import { vitandemRestAgent } from './agents/vitandem-rest-agent';
 
 export const mastra = new Mastra({
   workflows: {
@@ -13,7 +13,7 @@ export const mastra = new Mastra({
   },
   agents: { 
     semsoAgent,
-    weatherAgent,
+    vitandemRestAgent,
   },
   storage: new LibSQLStore({
     url: ":memory:",
