@@ -7,14 +7,14 @@ import { vitandemInstructions } from "../instructions/vitandem-instructions";
 
 const mcpClient = new MCPClient({
   servers: {
-    vitandem: {
+    clerk: {
       url: new URL(process.env.MCP_SERVER_URL || "http://localhost:8001"),
     },
-    vitandemAdmin: {
-      url: new URL(process.env.ADMIN_MCP_SERVER_URL || "http://localhost:8001"),
+    tandem: {
+      url: new URL(process.env.ADMIN_MCP_SERVER_URL || "http://localhost:8002"),
       requestInit: {
         headers: {
-          "x-api-key": process.env.ADMIN_MCP_SERVER_TOKEN || "",
+          "x-api-key": process.env.ADMIN_MCP_API_KEY || "",
         },
       },
     },
