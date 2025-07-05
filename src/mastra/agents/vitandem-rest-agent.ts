@@ -7,9 +7,9 @@ import { vitandemInstructions } from "../instructions/vitandem-instructions";
 
 const mcpClient = new MCPClient({
   servers: {
-    clerk: {
+    /* clerk: {
       url: new URL(process.env.MCP_SERVER_URL || "http://localhost:8001"),
-    },
+    }, */
     tandem: {
       url: new URL(process.env.ADMIN_MCP_SERVER_URL || "http://localhost:8002"),
       requestInit: {
@@ -29,8 +29,8 @@ export const vitandemRestAgent = new Agent({
     "AI healthcare assistant for complete healthcare institution management using MCP tools",
 
   instructions: vitandemInstructions,
-  model: google("gemini-2.5-flash"),
   tools: vitandemRestTools,
+  model: google("gemini-2.5-flash"),
   memory: new Memory({
     storage: new LibSQLStore({
       url: "file:../mastra.db",
