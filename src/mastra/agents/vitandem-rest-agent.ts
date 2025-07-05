@@ -1,14 +1,22 @@
-import { google } from '@ai-sdk/google';
-import { Agent } from '@mastra/core/agent';
-import { Memory } from '@mastra/memory';
-import { LibSQLStore } from '@mastra/libsql';
-import { MCPClient } from '@mastra/mcp';
-import { vitandemInstructions } from '../instructions/vitandem-instructions';
+import { google } from "@ai-sdk/google";
+import { Agent } from "@mastra/core/agent";
+import { Memory } from "@mastra/memory";
+import { LibSQLStore } from "@mastra/libsql";
+import { MCPClient } from "@mastra/mcp";
+import { vitandemInstructions } from "../instructions/vitandem-instructions";
 
 const mcpClient = new MCPClient({
   servers: {
     vitandem: {
-      url: new URL(process.env.VITANDEM_MCP_SERVER_URL || 'http://localhost:8001'),
+      url: new URL(process.env.MCP_SERVER_URL || "http://localhost:8001"),
+    },
+    vitandemAdmin: {
+      url: new URL(process.env.ADMIN_MCP_SERVER_URL || "http://localhost:8001"),
+      requestInit: {
+        headers: {
+          "x-api-key": process.env.ADMIN_MCP_SERVER_TOKEN || "",
+        },
+      },
     },
   },
 });
@@ -16,15 +24,16 @@ const mcpClient = new MCPClient({
 const vitandemRestTools = await mcpClient.getTools();
 
 export const vitandemRestAgent = new Agent({
-  name: 'Vitandem Admin Assistant',
-  description: 'AI healthcare assistant for complete healthcare institution management using MCP tools',
-  
+  name: "Vitandem Admin Assistant",
+  description:
+    "AI healthcare assistant for complete healthcare institution management using MCP tools",
+
   instructions: vitandemInstructions,
-  model: google('gemini-2.5-pro'),
+  model: google("gemini-2.5-flash"),
   tools: vitandemRestTools,
   memory: new Memory({
     storage: new LibSQLStore({
-      url: 'file:../mastra.db',
+      url: "file:../mastra.db",
     }),
   }),
-}); 
+});
