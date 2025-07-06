@@ -9,7 +9,7 @@ const mcpClient = new MCPClient({
   servers: {
     tandem: {
       url: new URL(
-        process.env.ADMIN_MCP_SERVER_URL || "https://tandem.vita.lat"
+        process.env.ADMIN_MCP_SERVER_URL || "http://localhost:8002"
       ),
       requestInit: {
         headers: {
@@ -29,7 +29,7 @@ export const vitandemRestAgent = new Agent({
 
   instructions: vitandemInstructions,
   tools: vitandemRestTools,
-  model: google("gemini-2.5-flash"),
+  model: google("gemini-2.5-pro"),
   memory: new Memory({
     storage: new LibSQLStore({
       url: "file:../mastra.db",
