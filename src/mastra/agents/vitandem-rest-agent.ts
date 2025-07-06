@@ -7,11 +7,10 @@ import { vitandemInstructions } from "../instructions/vitandem-instructions";
 
 const mcpClient = new MCPClient({
   servers: {
-    /* clerk: {
-      url: new URL(process.env.MCP_SERVER_URL || "http://localhost:8001"),
-    }, */
     tandem: {
-      url: new URL(process.env.ADMIN_MCP_SERVER_URL || "https://tandem.vita.lat"),
+      url: new URL(
+        process.env.ADMIN_MCP_SERVER_URL || "https://tandem.vita.lat"
+      ),
       requestInit: {
         headers: {
           "x-api-key": process.env.ADMIN_MCP_API_KEY || "",
