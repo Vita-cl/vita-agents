@@ -11,7 +11,7 @@ const mcpClient = new MCPClient({
       url: new URL(process.env.MCP_SERVER_URL || "http://localhost:8001"),
     }, */
     tandem: {
-      url: new URL(process.env.ADMIN_MCP_SERVER_URL || "http://localhost:8002"),
+      url: new URL(process.env.ADMIN_MCP_SERVER_URL || "https://tandem.vita.lat"),
       requestInit: {
         headers: {
           "x-api-key": process.env.ADMIN_MCP_API_KEY || "",
