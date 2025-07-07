@@ -1,4 +1,4 @@
-import { google } from "@ai-sdk/google";
+import { openai } from "@ai-sdk/openai";
 import { Agent } from "@mastra/core/agent";
 import { Memory } from "@mastra/memory";
 import { LibSQLStore } from "@mastra/libsql";
@@ -29,7 +29,7 @@ export const vitandemRestAgent = new Agent({
 
   instructions: vitandemInstructions,
   tools: vitandemRestTools,
-  model: google("gemini-2.5-pro"),
+  model: openai("gpt-4.1-mini"),
   memory: new Memory({
     storage: new LibSQLStore({
       url: "file:../mastra.db",
